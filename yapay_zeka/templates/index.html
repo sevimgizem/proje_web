@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konuşma Botu</title>
+</head>
+<body>
+    <div>
+        <h1>Konuşma Botu</h1>
+        <div>
+            <label for="soru">Soru:</label>
+            <input type="text" id="soru" name="soru">
+            <button onclick="soruGonder()">Soru Sor</button>
+        </div>
+        <div>
+            <h2>Cevap:</h2>
+            <p id="cevap"></p>
+        </div>
+    </div>
+    <script>
+        function soruGonder() {
+            var soru = document.getElementById("soru").value;
+            var messages = [
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": soru}
+            ];
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/cevap", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var cevap = JSON.parse(xhr.responseText);
+                    document.getElementById("cevap").innerText = cevap.cevap;
+                }
+            };
+            var data = JSON.stringify({"messages": messages});
+            xhr.send(data);
+        }
+    </script>
+</body>
+</html>
