@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <title>Anasayfa</title>
+<head>
+<link rel="stylesheet" href="/static/css/styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  
+<script src="/static/js/script.js"></script>
+</head>
+<div class="overlay">
+<body id="index_arkaplan" background="/static/images/indir.jpg">
+</div>  
+<ul>
+  {% if kullaniciadi %}
+  <p id="kullanici">{{ kullaniciadi }} </p>
+{% endif %}
+<div id = "cık">
+<a href="{{ url_for('cikis') }}" id = "cık" >CIKIŞ</a>
+</div>
+  
+  <a href="{{ url_for('anasayfa') }}"><img src="/static/images/indir.jpg" id="navbarrsm" alt=""></a>
+  <li><a href="{{ url_for('anasayfa') }}">Anasayfa</a></li>
+  <li><a href="{{ url_for('bolum') }}">Bölümler</a></li>
+      <li id ="grs" ><a href="{{ url_for('giris') }}"><i class="fas fa-home ev-icon"> </i></a></li>
+      <div id="saat"></div>
+    </div>
+  </li>
+</ul>
+<div class="bildir" align="center">
+  <h3 >Anasayfaya hoşgeldiniz</h3>
+  <p>site yapım aşamasındadır</p>
+ 
+
+
+</div>
+</body>
+</html>
+
+

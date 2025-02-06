@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Kod</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/python.css">
+</head>
+<div class="overlay">
+<body background="/static/images/indir.jpg" id="backimgs" >
+</div>
+    <ul>
+        <a href="{{ url_for('anasayfa') }}"><img src="/static/images/logo.jpg" id="navbarrsm" alt=""></a>
+        <li><a href="{{ url_for('anasayfa') }}">Anasayfa</a></li>
+        
+
+    <h1>Python Kodları Çalıştır</h1>
+    <textarea id="python-code" rows="10" cols="50"></textarea><br>
+    <button onclick="runPythonCode()">Kodları Çalıştır</button>
+    <div id="output"></div>
+
+    <script>
+        function runPythonCode() {
+            var code = document.getElementById('python-code').value;
+            fetch('/runcode', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'code=' + encodeURIComponent(code),
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('output').innerHTML = data;
+            })
+            .catch(error => console.error('Hata:', error));
+        }
+    </script>
+</body>
+</html>
